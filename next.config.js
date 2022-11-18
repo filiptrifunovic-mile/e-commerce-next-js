@@ -18,6 +18,9 @@ module.exports = withFrameworkConfig({
     locales: ["en-US"],
     defaultLocale: "en-US",
   },
+  framework: {
+    name: "shopify_local",
+  },
 });
 
 console.log(JSON.stringify(module.exports, null, 2));
