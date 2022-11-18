@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import "../assets/main.css";
 
 type NoopProps = {
   children: React.ReactNode;
