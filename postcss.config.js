@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ["tailwindcss", "autoprefixer"],
+  plugins: ["tailwindcss", "autoprefixer", "postcss-nesting"],
 };
 
 // module.exports = {
