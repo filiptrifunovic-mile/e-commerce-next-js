@@ -1,17 +1,23 @@
 import { ReactNode, FC } from "react";
 import style from "./Marquee.module.css";
-import Marqueee from "react-fast-marquee";
+import Slider from "react-fast-marquee";
+import cn from "classnames";
 
 interface Props {
   children: ReactNode[];
+  variant?: "primary" | "secondary";
 }
 
-const Marquee: FC<Props> = ({ children }) => {
+const Marquee: FC<Props> = ({ children, variant = "primary" }) => {
+  const rootClassName = cn(style.root2, {
+    [style.secondary]: (variant = "secondary"),
+  });
+
   return (
-    <div className={style.root2}>
-      <Marqueee gradientWidth={100}>
+    <div className={rootClassName}>
+      <Slider gradientWidth={50} speed={50} pauseOnHover={true}>
         <div className={style.container}>{children}</div>
-      </Marqueee>
+      </Slider>
     </div>
   );
 };

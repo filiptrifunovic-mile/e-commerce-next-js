@@ -1,10 +1,14 @@
 .root2 {
+  @apply bg-black;
   height: 320px;
-  background-image: none;
 }
 
 .container {
   @apply flex flex-row;
+}
+
+.secondary {
+  @apply bg-white;
 }
 
 .container > * {
