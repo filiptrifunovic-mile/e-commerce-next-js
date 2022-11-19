@@ -10,7 +10,7 @@ const Navbar: FC = () => {
       <div className={style.root}>
         <div className="flex flex-1 items-center">
           <Link legacyBehavior href="/">
-            <a className={style.logo}>NEXT_STORE</a>
+            <a className={style.logo}>SHOP</a>
           </Link>
           <nav className="ml-6 space-x-6">
             <Link legacyBehavior href="/">
