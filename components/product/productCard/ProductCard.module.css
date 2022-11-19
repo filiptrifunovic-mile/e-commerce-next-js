@@ -1,0 +1,58 @@
+.root {
+  @apply relative max-h-full;
+  background-color: #212529;
+}
+
+.root:hover .productBg::before {
+  transform: scale(0.99);
+}
+
+.root:hover .productImage {
+  transform: scale(1.1);
+}
+
+.root:nth-child(6n + 1) {
+  @apply bg-violet;
+}
+
+.root:nth-child(6n + 3) {
+  @apply bg-pink;
+}
+
+.productBg {
+  @apply absolute inset-0 z-0;
+  /* background-color: #212529; */
+}
+.productBg::before {
+  @apply transition-transform duration-500 block w-full h-full;
+  content: "";
+  background-image: url("/product-pattern-bg.svg");
+}
+
+.productImage {
+  @apply transition-transform duration-500 block;
+}
+
+.productTag {
+  @apply absolute top-0 left-0 z-20;
+}
+
+.productTag > * {
+  font-size: 2rem;
+  letter-spacing: 0.4px;
+}
+
+.productTitle {
+  @apply font-bold;
+  line-height: 2.2em;
+}
+
+.productTitle span {
+  @apply py-4 px-6 bg-primary;
+  box-decoration-break: clone;
+}
+
+.productPrice {
+  @apply pb-4 pt-2 px-6 font-semibold text-sm bg-primary;
+  letter-spacing: 0.4px;
+}

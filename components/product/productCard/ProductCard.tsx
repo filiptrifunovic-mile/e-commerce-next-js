@@ -2,6 +2,7 @@ import { Product } from "@common/types/product";
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import style from "./ProductCard.module.css";
 
 interface Props {
   product: Product;
@@ -12,12 +13,15 @@ const placeHolderImage = "/product-image-placeholder.svg";
 const ProductCard: FC<Props> = ({ product }) => {
   return (
     <Link legacyBehavior href={`/products/${product.slug}`}>
-      <a>
-        <div>
-          <h3>
+      <a className={style.root}>
+        <div className={style.productBg}></div>
+        <div className={style.productTag}>
+          <h3 className={style.productTitle}>
             <span>{product.name}</span>
           </h3>
-          <span>14 $</span>
+          <span className={style.productPrice}>
+            {product.price.value} {product.price.currencyCode}
+          </span>
         </div>
         {product.images && (
           <Image
@@ -27,7 +31,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             width={540}
             quality="85"
             layout="responsive"
-            // objectFit="cover"
+            className={style.productImage}
           />
         )}
       </a>

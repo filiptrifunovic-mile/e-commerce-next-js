@@ -1,7 +1,7 @@
 .root {
   @apply grid gap-0 grid-cols-1;
 
-  @apply lg:grid-cols-3 lg:grid-rows-2;
+  @apply lg:grid-cols-3 lg:grid-rows-2 lg:max-h-screen;
 }
 
 /* @media screen and (min-width: 768px) {
@@ -13,8 +13,8 @@
 
 .root > * {
   @apply row-span-1;
-  height: 500px;
-  max-height: 800px;
+  height: 100%;
+  max-height: 100%;
   overflow: hidden;
 
   @screen lg {
