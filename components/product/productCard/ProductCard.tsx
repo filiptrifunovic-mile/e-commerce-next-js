@@ -3,6 +3,7 @@ import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from "./ProductCard.module.css";
+import { Container } from "@components/UI";
 
 interface Props {
   product: Product;

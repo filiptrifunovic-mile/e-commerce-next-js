@@ -16,6 +16,8 @@
 
 import style from "./Layout.module.css";
 import { FC, ReactNode } from "react";
+import { Footer } from "@components/common";
+import { Navbar } from "@components/common";
 
 interface LayoutProps {
   children: ReactNode[];
@@ -24,7 +26,9 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className={style.root}>
+      <Navbar />
       <main className="fit">{children}</main>
+      <Footer />
     </div>
   );
 };
