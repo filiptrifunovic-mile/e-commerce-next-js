@@ -1,4 +1,4 @@
 .root {
   @apply bg-primary h-full mx-auto;
-  max-width: 2400px;
+  max-width: 1300px;
 }

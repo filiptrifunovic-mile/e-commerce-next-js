@@ -2,3 +2,12 @@
   height: 320px;
   background-image: none;
 }
+
+.container {
+  @apply flex flex-row;
+}
+
+.container > * {
+  @apply flex-1 px-16 py-4 relative;
+  /* background: white; */
+}
