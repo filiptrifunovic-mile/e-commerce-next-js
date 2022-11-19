@@ -4,7 +4,7 @@ import getAllProducts from "@framerwork/product/get-all-products";
 import { getConfig } from "@framerwork/api/config";
 import { Layout } from "components/common";
 import { ProductCard } from "@components/product";
-import { Grid, Hero } from "@components/UI";
+import { Grid, Hero, Marquee } from "@components/UI";
 
 export async function getStaticProps() {
   const config = getConfig();
@@ -33,6 +33,11 @@ export default function Home({
         headline="Hi"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quasi atque, laboriosam vel placeat accusantium! Adipisci quis repellendus officia eos."
       />
+      <Marquee>
+        {products.slice(0, 3).map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </Marquee>
     </>
   );
 }
