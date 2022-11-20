@@ -1,4 +1,4 @@
-import { createContext, useState, FC, ReactNode, useContext } from "react";
+import { createContext, useReducer, FC, ReactNode, useContext } from "react";
 
 export interface StateModifers {
   openSidebar: () => void;
@@ -27,14 +27,46 @@ interface UIProps {
   children: ReactNode[] | ReactNode;
 }
 
+type Action = { type: "OPEN_SIDEBAR" | "CLOSE_SIDEBAR" };
+
+function uiReducer(state: StateValues, action: Action) {
+  if (action.type === "OPEN_SIDEBAR") {
+    return {
+      ...state,
+      isSidebarOpen: true,
+    };
+  } else {
+    return {
+      ...state,
+      isSidebarOpen: false,
+    };
+  }
+  // switch (action.type) {
+  //   case "OPEN_SIDEBAR": {
+  //     return {
+  //       ...state,
+  //       isSidebarOpen: true,
+  //     };
+  //   }
+  //   case "CLOSE_SIDEBAR": {
+  //     return {
+  //       ...state,
+  //       isSidebarOpen: false,
+  //     };
+  //   }
+  // }
+}
+
 export const UIProvider: FC<UIProps> = ({ children }) => {
-  const openSidebar = () => alert("opening");
-  const closeSidebar = () => alert("close");
+  const [state, dispatch] = useReducer(uiReducer, initialState);
+
+  const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
+  const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
 
   const value = {
+    ...state,
     openSidebar,
     closeSidebar,
-    isSidebarOpen: true,
   };
 
   return (
