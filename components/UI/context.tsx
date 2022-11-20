@@ -48,20 +48,6 @@ function uiReducer(state: StateValues, action: Action) {
       isSidebarOpen: false,
     };
   }
-  // switch (action.type) {
-  //   case "OPEN_SIDEBAR": {
-  //     return {
-  //       ...state,
-  //       isSidebarOpen: true,
-  //     };
-  //   }
-  //   case "CLOSE_SIDEBAR": {
-  //     return {
-  //       ...state,
-  //       isSidebarOpen: false,
-  //     };
-  //   }
-  // }
 }
 
 export const UIProvider: FC<UIProps> = ({ children }) => {
