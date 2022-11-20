@@ -20,12 +20,15 @@ import { Footer } from "@components/common";
 import { Navbar } from "@components/common";
 import { Sidebar } from "@components/UI";
 import { CartSidebar } from "@components/cart";
+import { useUI } from "@components/UI/context";
 
 interface LayoutProps {
   children: ReactNode[];
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
+  const ui = useUI();
+
   return (
     <div className={style.root}>
       <Navbar />

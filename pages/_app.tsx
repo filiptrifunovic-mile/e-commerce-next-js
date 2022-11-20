@@ -1,3 +1,4 @@
+import { UIProvider, useUI } from "@components/UI/context";
 import { AppProps } from "next/app";
 import "../assets/main.css";
 
@@ -14,11 +15,13 @@ function MyApp({
   pageProps,
 }: AppProps & { Component: { Layout: any } }) {
   const Layout = Component.Layout ?? Noop;
-
+  const ui = useUI();
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <UIProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </UIProvider>
   );
 }
 
