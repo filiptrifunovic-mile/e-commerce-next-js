@@ -1,6 +1,7 @@
 import { UIProvider, useUI } from "@components/UI/context";
 import { AppProps } from "next/app";
 import "../assets/main.css";
+import "keen-slider/keen-slider.min.css";
 
 type NoopProps = {
   children: React.ReactNode;
