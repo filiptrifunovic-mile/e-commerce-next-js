@@ -96,14 +96,15 @@
 } */
 
 .root {
-  @apply relative grid items-start gap-8 grid-cols-1 overflow-x-hidden;
+  @apply relative grid items-start gap-8 grid-cols-1 overflow-hidden;
 
   @apply lg:grid-cols-12;
 }
 
 .productDisplay {
   @apply relative flex px-0 pb-0 box-border col-span-1 bg-violet;
-  min-height: 600px;
+  min-height: 100px;
+  margin-top: 2rem;
 
   @screen md {
     min-height: 700px;
@@ -129,21 +130,14 @@
   @apply lg:left-6 lg:pr-16;
 }
 
-@screen lg {
-  & .name,
-  & .price {
-    @apply bg-violet-light text-white;
-  }
-}
-
 .name {
-  @apply px-6 py-2 bg-primary text-primary font-bold;
+  @apply px-6 py-2 bg-primary text-primary font-bold bg-violet-light text-white;
   font-size: 2rem;
   letter-spacing: 0.4px;
 }
 
 .price {
-  @apply px-6 py-2 pb-4 bg-primary text-primary font-bold inline-block tracking-wide;
+  @apply px-6 py-2 pb-4 bg-primary text-primary font-bold inline-block tracking-wide bg-violet-light text-white;
 }
 
 .sidebar {
@@ -156,12 +150,12 @@
   @apply absolute z-10 inset-0 flex items-center justify-center overflow-x-hidden;
 }
 
-.imageContainer > div {
-  @apply h-full h-full;
+.imageContainer {
+  @apply w-full h-full;
 }
 
 .img {
-  @apply w-full h-auto max-h-full object-cover;
+  @apply w-full h-full max-h-full object-cover;
 }
 
 .button {
