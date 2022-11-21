@@ -1,5 +1,5 @@
 import { getConfig } from "@framerwork/api/config";
-import getAllProductsPaths from "@framerwork/product/get-all-products-paths";
+import { getAllProductsPaths, getProduct } from "@framerwork/product";
 import { Layout } from "components/common";
 import {
   GetStaticPaths,
@@ -21,11 +21,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({
   params,
 }: GetStaticPropsContext<{ slug: string }>) => {
+  const config = getConfig();
+
+  const { product } = await getProduct(config);
+
   return {
     props: {
-      product: {
-        slug: params?.slug,
-      },
+      product,
     },
   };
 };
@@ -33,7 +35,12 @@ export const getStaticProps = async ({
 export default function ProductSlug({
   product,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <div>{product.slug}</div>;
+  return (
+    <div>
+      {product.name}
+      {product.slug}
+    </div>
+  );
 }
 
 ProductSlug.Layout = Layout;

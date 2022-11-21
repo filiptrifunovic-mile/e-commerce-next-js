@@ -1,6 +1,5 @@
 import type { InferGetStaticPropsType } from "next";
-// import getAllProducts from "../framework/shopify/product/get-all-products";
-import getAllProducts from "@framerwork/product/get-all-products";
+import { getAllProducts } from "@framerwork/product";
 import { getConfig } from "@framerwork/api/config";
 import { Layout } from "components/common";
 import { ProductCard } from "@components/product";
