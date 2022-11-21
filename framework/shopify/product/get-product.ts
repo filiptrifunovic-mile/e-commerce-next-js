@@ -1,16 +1,21 @@
 import { ApiConfig, Variables } from "@common/types/api";
-import { getProductQuery } from "@framerwork/utils";
+import { getProductQuery, normalizeProduct } from "@framerwork/utils";
 
 import { Product as ShopifyProduct } from "@framerwork/schema";
+import { Product } from "@common/types/product";
 
 type FetchType = {
   productByHandle: ShopifyProduct;
 };
 
+type ReturnType = {
+  product: Product | null;
+};
+
 const getProduct = async (options: {
   config: ApiConfig;
   variables: Variables;
-}): Promise<any> => {
+}): Promise<ReturnType> => {
   const { config, variables } = options;
 
   const { data } = await config.fetch<FetchType>({
@@ -19,13 +24,10 @@ const getProduct = async (options: {
     variables,
   });
 
-  console.log(JSON.stringify(data.productByHandle, null, 2));
+  const { productByHandle } = data;
 
   return {
-    product: {
-      name: "product",
-      slug: "slug",
-    },
+    product: productByHandle ? normalizeProduct(productByHandle) : null,
   };
 };
 
