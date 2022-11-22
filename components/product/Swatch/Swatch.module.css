@@ -21,7 +21,7 @@
   @apply text-black transition duration-150 ease-in-out;
 
   &:hover {
-    @apply text-black;
+    @apply text-white;
   }
 
   &.dark,
