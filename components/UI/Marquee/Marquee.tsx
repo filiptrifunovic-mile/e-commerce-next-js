@@ -10,12 +10,12 @@ interface Props {
 
 const Marquee: FC<Props> = ({ children, variant = "primary" }) => {
   const rootClassName = cn(style.root2, {
-    [style.secondary]: (variant = "secondary"),
+    [style.secondary]: variant === "secondary",
   });
 
   return (
     <div className={rootClassName}>
-      <Slider gradientWidth={50} speed={50} pauseOnHover={true}>
+      <Slider gradientWidth={0} speed={80} pauseOnHover={true}>
         <div className={style.container}>{children}</div>
       </Slider>
     </div>

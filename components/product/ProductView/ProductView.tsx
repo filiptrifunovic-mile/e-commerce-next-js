@@ -1,16 +1,13 @@
 import cn from "classnames";
 import { FC, useState } from "react";
 import s from "./ProductView.module.css";
-import postcss from "postcss";
-import postcssNesting from "postcss-nesting";
 import { Button, Container } from "@components/UI";
 import Image from "next/image";
 import { Product } from "@common/types/product";
 import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
 import { useUI } from "@components/UI/context";
-
-postcss([postcssNesting(/* pluginOptions */)]).process(s /*, processOptions */);
+import useAdditem from "@framerwork/cart/use-add-item";
 
 interface Props {
   product: Product;
@@ -19,6 +16,9 @@ interface Props {
 const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
   const { openSidebar } = useUI();
+
+  const addItem = useAdditem();
+
   const variant = getVariant(product, choices);
 
   const addToCart = () => {
@@ -28,14 +28,15 @@ const ProductView: FC<Props> = ({ product }) => {
         variantId: variant?.id,
         variantOptions: variant?.options,
       };
-      alert(JSON.stringify(item));
+      const output = addItem(item);
+      console.log(output);
       openSidebar();
     } catch (error) {}
   };
 
   return (
     <Container>
-      <div className={cn(s.root, "fit")}>
+      <div className={cn(s.root, "fit", "mb-5")}>
         <div className={cn(s.productDisplay, "fit")}>
           <div className={s.nameBox}>
             <h1 className={s.name}>{product.name}</h1>

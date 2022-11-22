@@ -4,7 +4,7 @@ import cn from "classnames";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode | ReactNode[];
-  // onClick: () => void;
+  onClick: () => void;
 }
 
 const Button: FC<ButtonProps> = ({ children, onClick, className }) => {

@@ -1,9 +1,8 @@
 import { Product } from "@common/types/product";
 import { FC } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import style from "./ProductCard.module.css";
-import { Container } from "@components/UI";
 
 interface Props {
   product: Product;
@@ -49,13 +48,13 @@ const ProductCard: FC<Props> = ({ product, variant = "simple" }) => {
             </div>
             {product.images && (
               <Image
+                className={style.productImage}
                 alt={product.name ?? "Product image"}
                 src={product.images[0].url ?? placeHolderImage}
                 height={540}
                 width={540}
                 quality="85"
                 layout="responsive"
-                className={style.productImage}
               />
             )}
           </>
