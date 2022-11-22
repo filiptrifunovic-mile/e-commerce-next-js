@@ -3,7 +3,7 @@ import { FC } from "react";
 import s from "./ProductView.module.css";
 import postcss from "postcss";
 import postcssNesting from "postcss-nesting";
-import { Container } from "@components/UI";
+import { Button, Container } from "@components/UI";
 import Image from "next/image";
 import { Product } from "@common/types/product";
 import { ProductSlider } from "@components/product";
@@ -55,13 +55,13 @@ const ProductView: FC<Props> = ({ product }) => {
             </div>
           </section>
           <div>
-            <button
-              onClick={() => {}}
-              aria-label="Add to Cart"
+            <Button
               className={s.button}
+              aria-label="Add to Cart"
+              onClick={() => alert("click")}
             >
               Add to Cart
-            </button>
+            </Button>
           </div>
         </div>
       </div>
