@@ -6,7 +6,7 @@ import postcssNesting from "postcss-nesting";
 import { Button, Container } from "@components/UI";
 import Image from "next/image";
 import { Product } from "@common/types/product";
-import { ProductSlider } from "@components/product";
+import { ProductSlider, Swatch } from "@components/product";
 
 postcss([postcssNesting(/* pluginOptions */)]).process(s /*, processOptions */);
 
@@ -51,7 +51,12 @@ const ProductView: FC<Props> = ({ product }) => {
                 <h2 className="uppercase font-medium">{option.displayName}</h2>
                 <div className="flex flex-row py-4">
                   {option.values.map((ov) => (
-                    <div key={`${option.id}-${ov.label}`}>{ov.label}</div>
+                    <Swatch
+                      key={`${option.id}-${ov.label}`}
+                      label={ov.label}
+                      color={ov.hexColor}
+                      variant={option.displayName}
+                    />
                   ))}
                 </div>
               </div>
