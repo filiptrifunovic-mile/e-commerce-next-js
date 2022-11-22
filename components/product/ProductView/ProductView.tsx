@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Product } from "@common/types/product";
 import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
+import { useUI } from "@components/UI/context";
 
 postcss([postcssNesting(/* pluginOptions */)]).process(s /*, processOptions */);
 
@@ -17,8 +18,20 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
-
+  const { openSidebar } = useUI();
   const variant = getVariant(product, choices);
+
+  const addToCart = () => {
+    try {
+      const item = {
+        productId: String(product.id),
+        variantId: variant?.id,
+        variantOptions: variant?.options,
+      };
+      alert(JSON.stringify(item));
+      openSidebar();
+    } catch (error) {}
+  };
 
   return (
     <Container>
@@ -88,7 +101,7 @@ const ProductView: FC<Props> = ({ product }) => {
             <Button
               className={s.button}
               aria-label="Add to Cart"
-              onClick={() => alert("click")}
+              onClick={addToCart}
             >
               Add to Cart
             </Button>
