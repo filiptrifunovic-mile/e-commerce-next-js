@@ -1,6 +1,7 @@
 import { useApiProvider } from "@common";
 import { ApiHooks } from "@common/types/hooks";
 import { MutationHook } from "@common/types/hooks";
+import { useState } from "react";
 export const useHook = (fn: (apiHooks: ApiHooks) => MutationHook) => {
   const { hooks } = useApiProvider();
   return fn(hooks);
@@ -19,8 +20,22 @@ export const useMutationHook = (hook: MutationHook) => {
   });
 };
 
+const useData = () => {
+  const [data, setData] = useState(null);
+
+  if (!data) {
+    setData({ data: "Cart ready" } as any);
+  }
+
+  return data;
+};
+
 export const useSWRHook = (hook: any) => {
   return hook.useHook({
-    fetch: hook.fetcher,
+    useData() {
+      const data = useData();
+
+      return data;
+    },
   });
 };
