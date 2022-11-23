@@ -2,11 +2,14 @@ import { FC } from "react";
 import { Bag, Cross } from "@components/icons";
 import cn from "classnames";
 import { useUI } from "@components/UI/context";
+import useCart from "@framerwork/cart/use-cart";
 
 const CartSidebar: FC = () => {
   const { closeSidebar } = useUI();
 
   const isEmpty = true;
+
+  const cart = useCart();
 
   const rootClass = cn("h-full flex flex-col", {
     "bg-secondary text-secondary": isEmpty,
