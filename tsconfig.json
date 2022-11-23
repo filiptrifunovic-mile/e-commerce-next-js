@@ -26,10 +26,10 @@
       "@common/*": [
         "framework/common/*"
       ],
-      "@framerwork": [
+      "@framework": [
         "framework/shopify"
       ],
-      "@framerwork/*": [
+      "@framework/*": [
         "framework/shopify/*"
       ],
       "@components/*": [
@@ -37,6 +37,15 @@
       ],
       "@assets/*": [
         "assets/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@framerwork": [
+        "framework/shopify"
+      ],
+      "@framerwork/*": [
+        "framework/shopify/*"
       ]
     }
   },

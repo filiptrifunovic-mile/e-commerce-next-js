@@ -1,5 +1,4 @@
 export type ApiFetcherOptions = {
-  url: string;
   query: string;
   variables?: Variables;
 };
@@ -9,7 +8,6 @@ export type ApiFetcherResults<T> = {
 };
 
 export interface ApiConfig {
-  apiUrl: string;
   fetch: ApiFetcher;
 }
 
@@ -18,11 +16,9 @@ export interface ApiHooks {
     useAddItem: any;
   };
 }
-
 export type ApiFetcher<T = any> = (
   options: ApiFetcherOptions
 ) => Promise<ApiFetcherResults<T>>;
-
 export interface ApiProviderContext {
   hooks: ApiHooks;
   fetcher: ApiFetcher;

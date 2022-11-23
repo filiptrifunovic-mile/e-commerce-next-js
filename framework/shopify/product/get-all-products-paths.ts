@@ -6,11 +6,9 @@ import getAllProductsPathsQuery from "@framerwork/utils/queries/get-all-products
 type ReturnType = {
   products: Pick<Product, "slug">[];
 };
-
 const getAllProductsPaths = async (config: ApiConfig): Promise<ReturnType> => {
   const { data } = await config.fetch<{ products: ProductConnection }>({
     query: getAllProductsPathsQuery,
-    url: config.apiUrl,
   });
 
   const products = data.products.edges.map(({ node: { handle } }) => {
@@ -18,7 +16,6 @@ const getAllProductsPaths = async (config: ApiConfig): Promise<ReturnType> => {
       slug: handle,
     };
   });
-
   return { products };
 };
 
