@@ -2,7 +2,7 @@ import cn from "classnames";
 import { FC, useState } from "react";
 import s from "./ProductView.module.css";
 import { Button, Container } from "@components/UI";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Product } from "@common/types/product";
 import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
@@ -29,7 +29,6 @@ const ProductView: FC<Props> = ({ product }) => {
         variantOptions: variant?.options,
       };
       const output = addItem(item);
-      console.log(output);
       openSidebar();
     } catch (error) {}
   };
@@ -55,8 +54,9 @@ const ProductView: FC<Props> = ({ product }) => {
                     src={image.url}
                     alt={image.alt}
                     width={1050}
-                    height={1050}
+                    height={1200}
                     quality="85"
+                    // layout=""
                   />
                 </div>
               );
@@ -98,7 +98,7 @@ const ProductView: FC<Props> = ({ product }) => {
               {product.description}
             </div>
           </section>
-          <div>
+          <div className="btn-container">
             <Button
               className={s.button}
               aria-label="Add to Cart"
