@@ -2,7 +2,7 @@ export type ApiFetcherOptions = {
   query: string;
   variables?: Variables;
 };
-export type Variables = { [key: string]: string | undefined };
+export type Variables = { [key: string]: string | any | undefined };
 export type ApiFetcherResults<T> = {
   data: T;
 };
