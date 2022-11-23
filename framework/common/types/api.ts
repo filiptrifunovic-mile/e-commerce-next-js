@@ -8,7 +8,7 @@ export type ApiFetcherResults<T> = {
 };
 
 export interface ApiConfig {
-  fetch: ApiFetcher;
+  fetch<T>(options: ApiFetcherOptions): Promise<ApiFetcherResults<T>>;
 }
 
 export interface ApiHooks {
