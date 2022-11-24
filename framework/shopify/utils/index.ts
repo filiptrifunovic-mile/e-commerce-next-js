@@ -3,3 +3,4 @@ export * from "./normalize";
 export * from "./queries";
 
 export { default as getCheckoutId } from "./get-checkout-id";
+export { default as createCheckout } from "./createCheckout";
