@@ -5,7 +5,6 @@ export default useCart;
 
 export const handler = {
   fetchOptions: {
-    // get checkout query
     query: getCheckoutQuery,
   },
   async fetcher({ fetch, options, input: { checkoutId } }: any) {
@@ -18,10 +17,12 @@ export const handler = {
           checkoutId,
         },
       });
+
       checkout = data.node;
     } else {
       checkout = await createCheckout(fetch);
     }
+
     return checkout;
   },
   useHook: ({ useData }: any) => {
