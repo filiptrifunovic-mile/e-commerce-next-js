@@ -10,7 +10,6 @@ const CartSidebar: FC = () => {
   const isEmpty = true;
 
   const { data } = useCart();
-  debugger;
   console.log(data);
 
   const rootClass = cn("h-full flex flex-col", {

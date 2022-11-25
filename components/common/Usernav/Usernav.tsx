@@ -8,7 +8,6 @@ import useCart from "@framerwork/cart/use-cart";
 const Usernav: FC = () => {
   const { openSidebar } = useUI();
   const { data } = useCart();
-  debugger;
 
   return (
     <nav>
