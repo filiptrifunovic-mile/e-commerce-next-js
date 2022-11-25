@@ -42,7 +42,6 @@ const useData = (hook: any, fetcher: ApiFetcher, ctx: any) => {
   return response;
 };
 
-// cache data first if possible
 export const useSWRHook = (hook: any) => {
   const { fetcher } = useApiProvider();
   return hook.useHook({
