@@ -1,10 +1,11 @@
 import { useAddItem } from "@common/cart";
+import { UseAddItem } from "@common/cart/use-add-item";
 import { Cart } from "@common/types/cart";
 import { MutationHook } from "@common/types/hooks";
 import { checkoutToCart, getCheckoutId } from "@framerwork/utils";
 import { checkoutLineItemsAddMutation } from "@framerwork/utils/mutations";
 import { CheckoutLineItemsAddPayload } from "@framework/schema";
-export default useAddItem;
+export default useAddItem as UseAddItem<typeof handler>;
 
 export type AddItemHookDescriptor = {
   fetcherInput: {
@@ -42,10 +43,12 @@ export const handler: MutationHook<AddItemHookDescriptor> = {
 
     return cart;
   },
-  useHook: ({ fetch }) => {
-    return async (input) => {
-      const response = await fetch(input);
-      return response;
-    };
-  },
+  useHook:
+    ({ fetch }) =>
+    () => {
+      return async (input) => {
+        const response = await fetch(input);
+        return response;
+      };
+    },
 };
