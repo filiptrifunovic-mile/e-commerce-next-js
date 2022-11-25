@@ -9,7 +9,7 @@ import {
   SelectedOption,
 } from "../schema";
 import { Product } from "@common/types/product";
-import { Cart } from "@common/types/cart";
+import { Cart, LineItem } from "@common/types/cart";
 
 export const normalizeCart = (checkout: Checkout): Cart => {
   return {
@@ -28,7 +28,7 @@ export const normalizeCart = (checkout: Checkout): Cart => {
 
 const normalizeLineItem = ({
   node: { id, title, variant, ...rest },
-}: CheckoutLineItemEdge): any => {
+}: CheckoutLineItemEdge): LineItem => {
   return {
     id,
     variantId: String(variant?.id),
@@ -36,15 +36,17 @@ const normalizeLineItem = ({
     name: title,
     path: variant?.product?.handle ?? "",
     discounts: [],
-    options: variant?.selectedOptions.map(({ name, value }: SelectedOption) => {
-      const option = normalizeProductOptions({
-        id,
-        name,
-        values: [value],
-      });
+    options: variant?.selectedOptions?.map(
+      ({ name, value }: SelectedOption) => {
+        const option = normalizeProductOptions({
+          id,
+          name,
+          values: [value],
+        });
 
-      return option;
-    }),
+        return option;
+      }
+    ),
     variant: {
       id: String(variant?.id),
       sku: variant?.sku ?? "",
