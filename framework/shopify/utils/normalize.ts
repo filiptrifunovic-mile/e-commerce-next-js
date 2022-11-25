@@ -36,12 +36,26 @@ const normalizeLineItem = ({
     name: title,
     path: variant?.product?.handle ?? "",
     discounts: [],
-    //options
+    options: variant?.selectedOptions.map(({ name, value }: SelectedOption) => {
+      const option = normalizeProductOptions({
+        id,
+        name,
+        values: [value],
+      });
+
+      return option;
+    }),
     variant: {
       id: String(variant?.id),
       sku: variant?.sku ?? "",
       name: variant?.title,
-      //image
+      image: {
+        url:
+          process.env.NEXT_PUBLIC_FRAMERWORK === "shopify_local"
+            ? `/images/${variant?.image?.originalSrc}`
+            : variant?.image?.originalSrc ?? "/product-image-placeholder.svg",
+      },
+
       requiresShipping: variant?.requiresShipping ?? false,
       price: variant?.priceV2.amount,
       listPrice: variant?.compareAtPriceV2?.amount,
