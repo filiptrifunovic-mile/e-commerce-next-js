@@ -17,6 +17,10 @@
   }
 }
 
+.sm {
+  @apply h-7;
+}
+
 .color {
   @apply text-black transition duration-150 ease-in-out;
 
