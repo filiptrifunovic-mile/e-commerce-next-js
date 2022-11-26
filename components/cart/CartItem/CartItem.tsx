@@ -13,6 +13,9 @@ const CartItem = ({
   currencyCode: string;
 }) => {
   const price = item.variant.price! * item.quantity || 0;
+
+  const { options } = item;
+
   return (
     <li
       className={cn("flex flex-row space-x-8 py-8", {
@@ -28,6 +31,7 @@ const CartItem = ({
             width={150}
             height={150}
             src={`/images/${item.variant.image!.url}`}
+            // just item.variant.image!.url
             unoptimized
           />
         </Link>
@@ -41,7 +45,18 @@ const CartItem = ({
             {item.name}
           </span>
         </Link>
-        Options Here
+        {options &&
+          options.length > 0 &&
+          options.map((option) => {
+            return (
+              <span
+                key={`${item.id}-${option.displayName}`}
+                className="text-sm font-semibold text-accents-7"
+              >
+                {option.values[0].label}
+              </span>
+            );
+          })}
         <div className="flex items-center mt-3">
           <button type="button">
             <Minus onClick={() => {}} />
