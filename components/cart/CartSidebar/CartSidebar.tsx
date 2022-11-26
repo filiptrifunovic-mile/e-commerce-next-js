@@ -3,14 +3,14 @@ import { Bag, Cross } from "@components/icons";
 import cn from "classnames";
 import { useUI } from "@components/UI/context";
 import useCart from "@framerwork/cart/use-cart";
+import { LineItem } from "../../../framework/common/types/cart";
 
 const CartSidebar: FC = () => {
   const { closeSidebar } = useUI();
 
-  const isEmpty = true;
-
   const { data } = useCart();
-  console.log(data);
+
+  const isEmpty = (data?.lineItems.length ?? 0) <= 0;
 
   const rootClass = cn("h-full flex flex-col", {
     "bg-secondary text-secondary": isEmpty,
@@ -50,7 +50,11 @@ const CartSidebar: FC = () => {
               My Cart
             </h2>
             <ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
-              Cart Items Here!
+              {data?.lineItems.map((item: LineItem) => (
+                <div key={item.id}>
+                  {item.name} - {item.quantity}
+                </div>
+              ))}
             </ul>
           </div>
           <div className="flex-shrink-0 px-4  py-5 sm:px-6">
@@ -58,7 +62,9 @@ const CartSidebar: FC = () => {
               <ul className="py-3">
                 <li className="flex justify-between py-1">
                   <span>Subtotal</span>
-                  <span>20$</span>
+                  <span>
+                    {data?.lineItemsSubtotalPrice} {data?.currency.code}
+                  </span>
                 </li>
                 <li className="flex justify-between py-1">
                   <span>Taxes</span>
@@ -71,7 +77,9 @@ const CartSidebar: FC = () => {
               </ul>
               <div className="flex justify-between border-t border-accents-3 py-3 font-bold mb-10">
                 <span>Total</span>
-                <span>120$</span>
+                <span>
+                  {data?.totalPrice} {data?.currency.code}
+                </span>
               </div>
             </div>
             <button
