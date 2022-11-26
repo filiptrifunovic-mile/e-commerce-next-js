@@ -23,7 +23,7 @@ const CartItem = ({
       })}
     >
       <div className="w-16 h-16 bg-violet relative overflow-hidden cursor-pointer">
-        <Link legacyBehavior href={`/product/${item.path}`}>
+        <Link legacyBehavior href={`/`}>
           <Image
             onClick={() => {}}
             alt="product image"
