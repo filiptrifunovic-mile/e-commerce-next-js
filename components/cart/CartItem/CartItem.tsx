@@ -7,6 +7,7 @@ import { LineItem } from "@common/types/cart";
 import { Swatch } from "@components/product";
 import useRemoveItem from "@framework/cart/use-remove-item";
 import { useUpdateItem } from "@common/cart";
+import { useState, ChangeEvent } from "react";
 
 const CartItem = ({
   item,
@@ -15,11 +16,41 @@ const CartItem = ({
   item: LineItem;
   currencyCode: string;
 }) => {
+  const [quantity, setQuantity] = useState(item.quantity);
+
   const updateItem = useUpdateItem();
   const removeItem = useRemoveItem();
-  const price = item.variant.price! * item.quantity || 0;
 
+  const price = item.variant.price! * item.quantity || 0;
   const { options } = item;
+
+  const handleQuantity = async (e: ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+
+    if (Number.isInteger(val) && val >= 0) {
+      setQuantity(val);
+      alert(val);
+      await updateItem({
+        id: item.id,
+        variantId: item.variantId,
+        quantity: val,
+      });
+    }
+  };
+
+  const incrementQuantity = async (n = 1) => {
+    const val = Number(quantity) + n;
+
+    if (Number.isInteger(val) && val >= 0) {
+      setQuantity(val);
+      alert(val);
+      await updateItem({
+        id: item.id,
+        variantId: item.variantId,
+        quantity: val,
+      });
+    }
+  };
 
   return (
     <li
@@ -70,15 +101,7 @@ const CartItem = ({
         </div>
         <div className="flex items-center mt-3">
           <button type="button">
-            <Minus
-              onClick={() => {
-                updateItem({
-                  id: item.id,
-                  quantity: --item.quantity,
-                  variantId: item.variantId,
-                });
-              }}
-            />
+            <Minus onClick={() => incrementQuantity(-1)} />
           </button>
           <label>
             <input
@@ -86,26 +109,12 @@ const CartItem = ({
               max={99}
               min={0}
               className={s.quantity}
-              value={item.quantity}
-              onChange={() => {
-                updateItem({
-                  id: item.id,
-                  quantity: ++item.quantity,
-                  variantId: item.variantId,
-                });
-              }}
+              value={quantity}
+              onChange={handleQuantity}
             />
           </label>
           <button type="button">
-            <Plus
-              onClick={() => {
-                updateItem({
-                  id: item.id,
-                  quantity: ++item.quantity,
-                  variantId: item.variantId,
-                });
-              }}
-            />
+            <Plus onClick={() => incrementQuantity(+1)} />
           </button>
         </div>
       </div>
