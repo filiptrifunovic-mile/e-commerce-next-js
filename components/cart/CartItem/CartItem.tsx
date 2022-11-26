@@ -92,7 +92,7 @@ const CartItem = ({
         </span>
         <button
           onClick={async () => {
-            const item = await removeItem("testing input");
+            const cart = await removeItem({ id: item.id });
           }}
           className="flex justify-end outline-none"
         >
