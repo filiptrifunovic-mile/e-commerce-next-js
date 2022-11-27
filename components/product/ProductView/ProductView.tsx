@@ -15,6 +15,7 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
+  const [isLoading, setIsLoading] = useState(false);
   const { openSidebar } = useUI();
 
   const addItem = useAdditem();
@@ -25,13 +26,17 @@ const ProductView: FC<Props> = ({ product }) => {
     try {
       const item = {
         productId: String(product.id),
-        variantId: String(variant?.id),
-        variantOptions: variant?.options,
+        variantId: String(variant ? variant.id : product.variants[0].id),
         quantity: 1,
       };
-      const output = await addItem(item);
+
+      setIsLoading(true);
+      await addItem(item);
+      setIsLoading(false);
       openSidebar();
-    } catch (error) {}
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -104,6 +109,7 @@ const ProductView: FC<Props> = ({ product }) => {
               className={s.button}
               aria-label="Add to Cart"
               onClick={addToCart}
+              isLoading={isLoading}
             >
               Add to Cart
             </Button>
